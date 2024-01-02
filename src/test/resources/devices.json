@@ -1,0 +1,9 @@
+{
+  "Samsung_Emulator": {
+    "capabilities": {
+      "platformName": "Android",
+      "platformVersion": "10.0",
+      "deviceName": "Samsung S9 Edge"
+    }
+  }
+}
