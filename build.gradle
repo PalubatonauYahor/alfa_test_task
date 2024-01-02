@@ -1,0 +1,44 @@
+plugins {
+    id "java"
+    id "io.qameta.allure" version "2.11.0"
+}
+
+group 'org.exaple'
+version '1.0-SNAPSHOT'
+
+allure {
+    autoconfigure = true
+    version = '2.20.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    implementation group: 'io.appium', name: 'java-client', version: '7.5.1'
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.17.2'
+    implementation group: 'com.github.aquality-automation', name: 'aquality-appium-mobile', version: '3.1.1'
+    implementation 'org.projectlombok:lombok:1.18.20'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+}
+
+task openAllureReport(type: Exec) {
+    commandLine 'cmd', '/c', 'start', 'cmd', '/c', 'allure serve build/allure-results & ping -n 12 127.0.0.1 > nul & taskkill /F /IM allure.bat'
+}
+
+task clearAllureResults {
+    delete 'build/allure-results'
+}
+
+test {
+    dependsOn clearAllureResults
+    useTestNG()
+    testLogging.showStandardStreams = true
+    finalizedBy openAllureReport
+}

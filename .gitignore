@@ -6,6 +6,9 @@
 
 # BlueJ files
 *.ctxt
+#App files
+.apk
+.ipa
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/

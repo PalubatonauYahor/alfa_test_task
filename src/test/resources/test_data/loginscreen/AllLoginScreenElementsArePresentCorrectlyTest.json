@@ -1,0 +1,10 @@
+{
+  "test_data": [
+    {
+      "orientation": "landscape"
+    },
+    {
+      "orientation": "portrait"
+    }
+  ]
+}
