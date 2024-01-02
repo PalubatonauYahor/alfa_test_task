@@ -36,7 +36,7 @@ public class LoginSteps {
     //Assertion steps
     @Step("Assertion that Login Screen is present")
     public static void assetThanLoginScreenIsPresent() {
-        Assert.assertTrue(new LoginScreen().state().waitForDisplayed(Duration.ofMillis(10000)), "Login Screen is not present");
+        Assert.assertTrue(new LoginScreen().state().waitForDisplayed(), "Login Screen is not present");
     }
 
     @Step("Assertion that Login Screen title text equals to: {text}")
