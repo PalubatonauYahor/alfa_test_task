@@ -63,16 +63,14 @@ public class BaseTest {
             throw new RuntimeException(e);
         }
         JsonArray jsonArray = jsonElement.getAsJsonObject().getAsJsonArray(getTestProperty(TEST_DATA_KEY));
-        for (JsonElement element : jsonArray) {
+        jsonArray.forEach(element -> {
             if (element.isJsonObject()) {
                 JsonObject jsonObject = element.getAsJsonObject();
                 List<Object> rowList = new ArrayList<>();
-                for (String key : keys) {
-                    rowList.add(jsonObject.get(key).getAsString());
-                }
+                keys.forEach(key -> rowList.add(jsonObject.get(key).getAsString()));
                 dataList.add(rowList.toArray());
             }
-        }
+        });
         return dataList.toArray(new Object[0][]);
     }
 
